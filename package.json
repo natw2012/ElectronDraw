@@ -1,0 +1,17 @@
+{
+  "name": "electrondraw",
+  "version": "0.0.1",
+  "description": "Electron Drawing App",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Nathaniel Wong",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "^1.7.1",
+    "electron": "^2.0.2",
+    "fabric": "^2.3.2",
+    "jquery": "^3.3.1"
+  }
+}
