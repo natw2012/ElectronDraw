@@ -1,23 +1,24 @@
-html, body{
+html,
+body {
   background: none !important;
   height: 100%;
 }
 
-nav{
+nav {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%; 
+  width: 100%;
   height: auto;
   background-color: white;
   -webkit-app-region: drag;
   cursor: move;
   border: 2px solid grey;
   border-bottom: none;
-  display:block;
+  display: block;
 }
 
-#tool-bar{
+#tool-bar {
   top: 0;
   left: 0;
   width: 100%;
@@ -25,10 +26,10 @@ nav{
   background-color: white;
   border: 2px solid grey;
   border-bottom: none;
-  display:block;
+  display: block;
 }
 
-*{
+* {
   font-family: arial;
 }
 
@@ -42,66 +43,68 @@ nav{
   font-weight: bold;
 }
 
-#title-bar-btns>#min-btn,#title-bar-btns>#max-btn,#title-bar-btns>#close-btn{
+#title-bar-btns > #min-btn,
+#title-bar-btns > #max-btn,
+#title-bar-btns > #close-btn {
   width: 33.32%;
   height: 100%;
   float: left;
   margin: 0;
   cursor: default;
-  transition: all ease-in-out .2s;
+  transition: all ease-in-out 0.2s;
 }
 
-#title-bar-btns>#max-btn>span{
+#title-bar-btns > #max-btn > span {
   width: 100%;
   height: 100%;
   position: relative;
   display: block;
-  transition: all ease-in-out .2s;
+  transition: all ease-in-out 0.2s;
 }
-#title-bar-btns>#max-btn>span::before,#title-bar-btns>#maximize>span::after{
-
-  content: '';
+#title-bar-btns > #max-btn > span::before,
+#title-bar-btns > #maximize > span::after {
+  content: "";
   width: 15%;
   height: 21%;
   position: absolute;
   display: block;
   background-color: transparent;
-  transition: all ease-in-out .2s;
+  transition: all ease-in-out 0.2s;
 }
 
-#title-bar-btns>#max-btn>span::before{
+#title-bar-btns > #max-btn > span::before {
   top: 30%;
   left: 35%;
   z-index: 2;
 }
 
-#title-bar-btns>#max-btn>span::after{
+#title-bar-btns > #max-btn > span::after {
   top: 25%;
   left: 45%;
 }
 
-#title-bar{
+#title-bar {
   display: block;
   float: left;
   height: 100%;
   max-width: 30%;
-  padding-left: .5em;
+  padding-left: 0.5em;
 }
 
-#overlay-border{
+#overlay-border {
   /* background-color: #333; */
   overflow: hidden;
   position: fixed;
   bottom: 0;
-  width:100%;
-  height:90%;
+  width: 100%;
+  height: 90%;
 }
 
-canvas{
+canvas {
   top: 0px;
   left: 0px;
   /* border: 2px solid grey; */
-  display:block;
+  display: block;
   height: auto;
   width: auto;
   overflow: hidden;
