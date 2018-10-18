@@ -2,10 +2,8 @@ const electron = require("electron");
 const path = require("path");
 const url = require("url");
 
-// Module to control application life.
-const app = electron.app;
-// Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow;
+
+const { app, ipcMain, dialog, BrowserWindow } = require('electron');
 
 // Added electron-reload to refresh app on save
 require("electron-reload")(__dirname);
@@ -25,6 +23,16 @@ function createWindow() {
     movable: true
   });
 
+  //Create toolWindow
+  toolWindow = new BrowserWindow({
+    width: 400,
+    height: 300,
+    frame: true,
+    transparent: false,
+    resizable: true,
+    movable: true
+  });
+
   // and load the index.html of the app.
   mainWindow.loadURL(
     url.format({
@@ -34,8 +42,17 @@ function createWindow() {
     })
   );
 
+  toolWindow.loadURL(
+    url.format({
+      pathname: path.join(__dirname, "tools.html"),
+      protocol: "file:",
+      slashes: true
+    })
+  );
+
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
+  toolWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.
   mainWindow.on("closed", function() {
@@ -43,6 +60,7 @@ function createWindow() {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     mainWindow = null;
+    toolWindow = null;
   });
 }
 
@@ -68,5 +86,27 @@ app.on("activate", function() {
   }
 });
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
+ipcMain.on('drawMode', function (e, mode, color, lineWidth, shadowWidth, shadowColor) {
+  mainWindow.webContents.send('drawMode', mode, color, lineWidth, shadowWidth, shadowColor);
+})
+ipcMain.on('colorChange', function (e, value) {
+  mainWindow.webContents.send('colorChange', value);
+})
+ipcMain.on('shadowColorChange', function (e, value) {
+  mainWindow.webContents.send('shadowColorChange', value);
+})
+ipcMain.on('drawMode', function (e, o, value) {
+  mainWindow.webContents.send('lineWidthChange', o, value);
+})
+ipcMain.on('shadowWidthChange', function (e, o, value) {
+  mainWindow.webContents.send('shadowWidthChange', o, value);
+})
+ipcMain.on('shadowOffsetChange', function (e, o, value) {
+  mainWindow.webContents.send('shadowOffsetChange', o, value);
+})
+ipcMain.on('drawingModeE1', function (e, drawingModeEl, drawingOptionsEl) {
+  mainWindow.webContents.send('drawingModeE1', drawingModeEl,drawingOptionsEl);
+})
+ipcMain.on('canvasClear', function (e) {
+  mainWindow.webContents.send('canvasClear');
+})

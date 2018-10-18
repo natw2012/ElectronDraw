@@ -14,7 +14,7 @@ nav {
   -webkit-app-region: drag;
   cursor: move;
   border: 2px solid grey;
-  border-bottom: none;
+  border-bottom: 2px solid grey;
   display: block;
 }
 
